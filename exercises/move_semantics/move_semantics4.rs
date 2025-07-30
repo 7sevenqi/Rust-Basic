@@ -1,33 +1,20 @@
-// move_semantics4.rs
-//
-// Refactor this code so that instead of passing `vec0` into the `fill_vec`
-// function, the Vector gets created in the function itself and passed back to
-// the main function.
-//
-// Execute `rustlings hint move_semantics4` or use the `hint` watch subcommand
-// for a hint.
-
-// I AM NOT DONE
-
 fn main() {
-    let vec0 = Vec::new();
-
-    let mut vec1 = fill_vec(vec0);
+    let mut vec1 = fill_vec(); // 直接调用 fill_vec，无需预先创建向量
 
     println!("{} has length {} content `{:?}`", "vec1", vec1.len(), vec1);
 
-    vec1.push(88);
+    vec1.push(88); // 可以继续向 vec1 中添加元素
 
     println!("{} has length {} content `{:?}`", "vec1", vec1.len(), vec1);
 }
 
-// `fill_vec()` no longer takes `vec: Vec<i32>` as argument
+// 修改后的 fill_vec 函数：不接收参数，直接返回新创建的向量
 fn fill_vec() -> Vec<i32> {
-    let mut vec = vec;
+    let mut vec = Vec::new(); // 正确初始化新向量
 
     vec.push(22);
     vec.push(44);
     vec.push(66);
 
-    vec
+    vec // 返回填充好的向量
 }
